@@ -1,17 +1,53 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../AuthPage/AuthProvider';
 
 const Register = () => {
     const [errorM, setErrorM] = useState("");
     const [passError, setPassError] = useState("");
+
+    const {Register} = useContext(AuthContext);
+
+    const handleRegister = event =>{
+        event.preventDefault();
+    const form = event.target;
+
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if(password != confirmPassword){
+        setErrorM("Password does not match!");
+        setPassError("Password does not match!");
+        return;
+    }
+    else{
+        setErrorM("");
+        setPassError("");
+    }
+
+    console.log(firstName, lastName, email, password, confirmPassword)
+
+    Register(email, password)
+    .then(result => {
+        console.log("Register Successful", result.user)
+        setErrorM("");
+    })
+    .catch(error =>{
+        console.log(error)
+        setErrorM(error.message);
+    })
+    }
 
     return (
         <div
       className="w-1/3 mt-4 py-4 px-14 mx-auto text-center rounded-2xl"
     >
       <h3 className="text-2xl font-semibold mb-5">Please Register</h3>
-      <form className="text-left">
+      <form onSubmit={handleRegister} className="text-left">
         <div>
           <h4 className="text-lg font-medium mt-2 mb-1">First name</h4>
           <input
@@ -61,11 +97,6 @@ const Register = () => {
         </div>
 
         <input className="btn bg-my-primary border-none w-full mt-3" type="submit" value="Register" >
-        {/* <button type="submit" className="w-full mt-3">
-          <Link className="btn bg-my-primary border-none w-full">
-            Register
-          </Link>
-        </button>     */}
         </input>
         {errorM && (
           <p className="my-1 text-danger">

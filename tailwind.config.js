@@ -21,6 +21,8 @@ export default {
       "black": "#000",
       "my-primary": "#c6a87d",
       "my-gray" : "#13181c",
+      "warning": "color: rgb(217 119 6)",
+      "danger" : "#ff0000"
     },
   },
   plugins: [require("daisyui")],
