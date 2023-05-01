@@ -9,15 +9,33 @@ const Register = () => {
 
     const {Register} = useContext(AuthContext);
 
+    const [isEmail, setEmail] = useState("");
+    const handleEmail = event =>{
+        setEmail(event.target.value);
+    }
+    const [isPassword, setPassword] = useState("");
+    const handlePassword = event =>{
+        setPassword(event.target.value);
+    }
+    const [isConfirmPassword, setConfirmPassword] = useState("");
+    const handleConfirmPassword = event =>{
+        setConfirmPassword(event.target.value);
+    }
+
     const handleRegister = event =>{
         event.preventDefault();
     const form = event.target;
 
-    const firstName = form.firstName.value;
-    const lastName = form.lastName.value;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+
+    if(password.length < 6 || confirmPassword.length < 6){
+        setErrorM("Password must be at least 6 digits!");
+        return
+    }
 
     if(password != confirmPassword){
         setErrorM("Password does not match!");
@@ -29,19 +47,23 @@ const Register = () => {
         setPassError("");
     }
 
-    console.log(firstName, lastName, email, password, confirmPassword)
+    console.log(name, photoURL, email, password, confirmPassword)
 
     Register(email, password)
     .then(result => {
         console.log("Register Successful", result.user)
         setErrorM("");
+        
     })
     .catch(error =>{
         console.log(error)
         setErrorM(error.message);
     })
+
+        event.target.reset();
     }
 
+    
     return (
         <div
       className="w-1/3 mt-4 py-4 px-14 mx-auto text-center rounded-2xl"
@@ -49,20 +71,20 @@ const Register = () => {
       <h3 className="text-2xl font-semibold mb-5">Please Register</h3>
       <form onSubmit={handleRegister} className="text-left">
         <div>
-          <h4 className="text-lg font-medium mt-2 mb-1">First name</h4>
+          <h4 className="text-lg font-medium mt-2 mb-1">Your Name</h4>
           <input
             type="text"
-            name="firstName"
-            placeholder="First name"
+            name="name"
+            placeholder="Enter your name"
             className="input input-bordered w-full text-black"
           />
         </div>
         <div>
-          <h4 className="text-lg font-medium mt-2 mb-1">Last name</h4>
+          <h4 className="text-lg font-medium mt-2 mb-1">Photo URL</h4>
           <input
             type="text"
-            name="lastName"
-            placeholder="Last name"
+            name="photoURL"
+            placeholder="Enter photo URL"
             className="input input-bordered w-full text-black"
           />
         </div>
@@ -70,33 +92,42 @@ const Register = () => {
         <div>
           <h4 className="text-lg font-medium mt-2 mb-1">Your Email</h4>
           <input
+          required
             type="email"
             name="email"
             placeholder="Username or Email"
             className="input input-bordered w-full text-black"
+            onChange={handleEmail}
           />
         </div>
         <div>
           <h4 className="text-lg font-medium mt-2 mb-1">Your Password</h4>
           <input
+          required
             type="password"
             name="password"
             placeholder="Password"
             // className="input input-bordered w-full text-black"
             className = {`input input-bordered w-full text-black ${passError && "border-danger"}`}
+            onChange={handlePassword}
           />
         </div>
         <div>
           <h4 className="text-lg font-medium mt-2 mb-1">Confirm Password</h4>
           <input
+          required
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             className= {`input input-bordered w-full text-black ${passError && "border-danger"}`}
+            onChange={handleConfirmPassword}
           />
         </div>
 
-        <input className="btn bg-my-primary border-none w-full mt-3" type="submit" value="Register" >
+        <input 
+        className={`btn bg-my-primary border-none w-full mt-3 ${(!isEmail || !isPassword || !isConfirmPassword) && "btn-disabled"}`}
+        type="submit" value="Register" 
+        >
         </input>
         {errorM && (
           <p className="my-1 text-danger">

@@ -69,7 +69,7 @@ const Header = () => {
           </div>
           <div className="navbar-end">
             <div className="w-10 rounded-full mx-4">
-              <img className="rounded-full" src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" alt="nav img" />
+              {user && <img className="rounded-full" src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" alt="nav img" />}
             </div>
             {user && <h3 className="mx-2">{user?.email}</h3>}
           {user ? <Link onClick={handleLogOut} className="btn bg-my-primary border-none">Log out</Link>
