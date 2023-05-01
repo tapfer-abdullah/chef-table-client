@@ -1,8 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthPage/AuthProvider";
 
 const Header = () => {
+
+    const {user, Logout} = useContext(AuthContext);
+    const handleLogOut = () =>{
+        Logout()
+        .then(() =>{
+            console.log("Log out successful")
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
   return (
     <div>
       <div className=" px-4 md:px-32 bg-black text-white text-lg">
@@ -58,13 +71,13 @@ const Header = () => {
             <div className="w-10 rounded-full mx-4">
               <img className="rounded-full" src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" alt="nav img" />
             </div>
-            {/* {user && <h3 className="mx-2">{user?.email}</h3>}
+            {user && <h3 className="mx-2">{user?.email}</h3>}
           {user ? <Link onClick={handleLogOut} className="btn bg-my-primary border-none">Log out</Link>
           :
-          <Link to="/login" className="btn bg-my-primary border-none">Login</Link>} */}
-            <Link to="/login" className="btn bg-my-primary border-none">
+          <Link to="/login" className="btn bg-my-primary border-none">Login</Link>}
+            {/* <Link to="/login" className="btn bg-my-primary border-none">
               Login
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
