@@ -3,6 +3,7 @@ import React from 'react';
 import Banner from './Banner';
 import ChefsSection from './ChefSection/ChefsSection';
 import OurStrength from './OurStrength';
+import FoodSection from './FoodSection';
 
 const HomeContents = () => {
     return (
@@ -10,6 +11,7 @@ const HomeContents = () => {
             <Banner></Banner>
             <ChefsSection></ChefsSection>
             <OurStrength></OurStrength>
+            <FoodSection></FoodSection>
         </div>
     );
 };
