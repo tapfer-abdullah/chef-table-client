@@ -20,7 +20,7 @@ const SingleChefCard = ({ d }) => {
           </div>
           <div className="card-actions justify-end ">
             <button className="btn glass btn-outline text-white hover:btn-accent">
-                <Link>View Recipes</Link>
+                <Link to={`/chef-details/${d.id}`}>View Recipes</Link>
             </button>
           </div>
         </div>

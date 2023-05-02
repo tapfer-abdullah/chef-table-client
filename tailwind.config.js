@@ -8,7 +8,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'my-banner-bg': "url('/public/banner/biriyani-banner.jpg')",
+        'my-banner-bg': "url('./public/banner/biriyani-banner.jpg')",
+        'my-banner-details-0': "url('./public/banner/banner0.jpg')",
+        'my-banner-details-1': "url('./public/banner/banner1.jpg')",
       }
     },
     colors: {
