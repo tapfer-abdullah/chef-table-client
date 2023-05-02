@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 
 const Login = () => {
-  const { Login } = useContext(AuthContext);
+  const { Login, LoginWGoogle,LoginWGithub } = useContext(AuthContext);
   const [errorM, setErrorM] = useState("");
 
   const handleLogin = (event) => {
@@ -41,8 +41,29 @@ const Login = () => {
     setEmail(event.target.value);
   }
 
+  const handleWithGoogle = () => {
+    LoginWGoogle()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorM(error.message);
+      });
+  };
+  const handleWithGithub = () => {
+    LoginWGithub()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorM(error.message);
+      });
+  };
+
   return (
-    <div className="w-1/3 mt-24 py-9 px-14 mx-auto text-center rounded-2xl">
+    <div className="w-1/3 my-4 md:mb-6 md:mt-24 py-9 px-14 mx-auto text-center rounded-xl border-2 border-black">
       <h3 className="text-2xl font-semibold mb-9">Please Log in</h3>
       <form onSubmit={handleLogin} className="text-left">
         <div>
@@ -92,6 +113,24 @@ const Login = () => {
           </Link>
         </p>
       </form>
+
+      <div className="text-center">
+          <p className="mt-6 text-warning">Or Sing Up Using</p>
+          <div>
+            <button
+              onClick={handleWithGoogle}
+              className="btn bg-my-primary border-none w-full md:w-2/5  mx-3 my-5"
+            >
+              <Link>Google</Link>
+            </button>
+            <button
+              onClick={handleWithGithub}
+              className="btn bg-my-primary border-none w-full md:w-2/5 mx-3 my-5"
+            >
+              <Link>GitHub</Link>
+            </button>
+          </div>
+        </div>
     </div>
   );
 };

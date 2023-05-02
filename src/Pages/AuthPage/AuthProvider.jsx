@@ -4,10 +4,13 @@
 /* eslint-disable no-unused-vars */
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import app from "../../Config/config.firebase";
@@ -36,11 +39,22 @@ const AuthProvider = ({ children }) => {
     signOut(auth);
   };
 
+  const LoginWGoogle = () =>{
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  }
+  const LoginWGithub = () =>{
+    const provider = new GithubAuthProvider();
+    return signInWithPopup(auth, provider);
+  }
+
   const authInfo = {
     user,
     Login,
     Register,
     Logout,
+    LoginWGoogle,
+    LoginWGithub
   };
 
   return (

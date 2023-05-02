@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <Header></Header>
-            <Outlet></Outlet>
+            <Outlet className='min-h-[100vh]'></Outlet>
             <Footer></Footer>
         </div>
     );
