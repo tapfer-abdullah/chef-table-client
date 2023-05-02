@@ -16,18 +16,31 @@ import { Pagination } from "swiper";
 const FoodSection = () => {
 
   return (
-    <div className="px-4 md:px-32 pb-5">
+    <div className="px-4 md:px-44 pb-5">
       <div className="text-center pt-8 pb-5 md:pt-24 md:pb-20">
         <p className="text-lg font-medium text-my-primary">Special Offer</p>
         <h3 className="text-4xl font-semibold mt-2">Best Specialties</h3>
       </div>
 
       <Swiper
-        slidesPerView={3}
+        // slidesPerView={3}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
+
+        breakpoints={{
+            // when window width is >= 640px
+            640: {
+              width: 640,
+              slidesPerView: 1,
+            },
+            // when window width is >= 768px
+            768: {
+              width: 768,
+              slidesPerView: 2,
+            },
+          }}
         
         modules={[Pagination]}
         className="mySwiper "
