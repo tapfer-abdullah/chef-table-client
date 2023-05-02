@@ -163,7 +163,7 @@ const Register = () => {
         </form>
 
         <div className="text-center">
-          <p className="mt-6 text-warning">Or Sing Up Using</p>
+          <p className="mt-6 text-warning text-xl font-semibold">Or Sing Up Using</p>
           <div>
             <button
               onClick={handleWithGoogle}

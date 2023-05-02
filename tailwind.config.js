@@ -6,7 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'my-banner-bg': "url('/public/banner/biriyani-banner.jpg')",
+      }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
