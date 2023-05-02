@@ -6,11 +6,11 @@ const Banner = () => {
   return (
     <div>
       <div
-        className={`text-center bg-my-banner-bg bg-bg-rectangle text-white bg-no-repeat bg-cover bg-center`}
+        className={`text-center bg-my-banner-bg bg-bg-rectangle text-white bg-no-repeat bg-cover bg-center h-full box-border`}
       >
         <div
           style={{ backgroundColor: "rgb(0 0 0 / 50%)" }}
-          className="md:px-32 h-full w-full py-28 px-4"
+          className="md:px-32 h-full w-full py-28 px-4 box-border"
         >
           <h3 className="text-6xl font-semibold">
             Where every flavor <br />
