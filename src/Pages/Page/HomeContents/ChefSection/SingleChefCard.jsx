@@ -7,7 +7,7 @@ const SingleChefCard = ({ d }) => {
   console.log(d);
   return (
     <div>
-      <div className="card w-96 my-4 bg-my-primary border-1">
+      <div className="card w-96 my-4 bg-my-primary border-1 mx-auto">
         <figure>
           <img src={d.picture} alt="car!" />
         </figure>
