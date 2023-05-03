@@ -8,7 +8,7 @@ const ChefDetails = () => {
   const { id, name, picture, bio, likes, experience, recipes, recipesList } =
     details;
 
-//   console.log(details);
+  //   console.log(details);
   return (
     <div>
       <div className="text-white bg-my-banner-details-0 bg-bg-rectangle  bg-no-repeat bg-cover bg-center h-full">
@@ -39,21 +39,23 @@ const ChefDetails = () => {
         </div>
       </div>
 
-        
-      <div className=" text-white md:px-32 md:py-28" style={{backgroundColor: "rgb(16, 20, 24)"}}>
+      <div
+        className=" text-white md:px-32 md:py-10"
+        style={{ backgroundColor: "rgb(16, 20, 24)" }}
+      >
         <div className="text-center pt-8 pb-5 md:pt-24 md:pb-20">
-        <p className="text-lg font-medium text-my-primary">Explore</p>
-        <h3 className="text-4xl font-semibold mt-2">Delicious Recipies</h3>
-      </div>
-        
-      <div className="grid grid-cols-2">
-        {
-            recipesList.map(recipies => <Recipies
-                key={recipies.recipeNumber}
-                recipies = {recipies}
-            ></Recipies>)
-        }
-      </div>
+          <p className="text-lg font-medium text-my-primary">Explore</p>
+          <h3 className="text-4xl font-semibold mt-2">Delicious Recipies</h3>
+        </div>
+
+        <div className="grid grid-cols-2">
+          {recipesList.map((recipies) => (
+            <Recipies
+              key={recipies.recipeNumber}
+              recipies={recipies}
+            ></Recipies>
+          ))}
+        </div>
       </div>
     </div>
   );

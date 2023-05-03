@@ -13,14 +13,16 @@ const Recipies = ({ recipies }) => {
       style={{ border: "2px solid #c6a87d" }}
     >
       <div className="">
-        <img style={{ height: "380px" }} src={recipeImg} alt="" />
+        <img style={{ height: "400px", with:"524px" }} src={recipeImg} alt="" />
       </div>
       <h4 className="my-4 text-4xl font-semibold">{recipeName}</h4>
-      <p className="mt-3">
+      <p className="mt-3 flex">
         <span className="text-my-primary">Ingredients: </span>
+        
         {ingredients.map((i) => (
-          <li>{i}</li>
+          <span className="mx-2">{i}</span>
         ))}
+
       </p>
       <p className="mt-3">
         <span className="text-my-primary">Cooking Method: </span>
@@ -36,5 +38,5 @@ const Recipies = ({ recipies }) => {
       </div>
     </div>
   );
-};
+}
 export default Recipies;
