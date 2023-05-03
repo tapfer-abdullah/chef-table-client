@@ -1,22 +1,21 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 
 const Header = () => {
-
-    const {user, Logout} = useContext(AuthContext);
-    // console.log(user)
-    const handleLogOut = () =>{
-        Logout()
-        .then(() =>{
-            console.log("Log out successful")
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+  const { user, Logout } = useContext(AuthContext);
+  // console.log(user)
+  const handleLogOut = () => {
+    Logout()
+      .then(() => {
+        console.log("Log out successful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className=" px-2 md:px-32 bg-black text-white text-base">
@@ -41,13 +40,27 @@ const Header = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box "
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-black rounded-box "
               >
                 <li className="md:mx-6 text-black">
-                  <Link to="/">Home</Link>
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? " text-my-primary" : "text-white"
+                    }
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 <li className="md:mx-6 text-black">
-                  <Link to="">Blog</Link>
+                  <NavLink
+                    to="/blog"
+                    className={({ isActive }) =>
+                      isActive ? "text-my-primary" : "text-white"
+                    }
+                  >
+                    Blog
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -61,29 +74,52 @@ const Header = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <li className="mx-6">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="mx-6">
-                <Link to="">Blog</Link>
-              </li>
+              <li className="md:mx-6 text-black">
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? " text-my-primary" : "text-white"
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li className="md:mx-6 text-black">
+                  <NavLink
+                    to="/blog"
+                    className={({ isActive }) =>
+                      isActive ? "text-my-primary" : "text-white"
+                    }
+                  >
+                    Blog
+                  </NavLink>
+                </li>
             </ul>
           </div>
           <div className="navbar-end">
             <div className="w-10 rounded-full mx-4">
-              {
-                user && <img 
-                className="rounded-full" 
-                src={user?.photoURL} 
-                alt="User img" 
-                title={user?.displayName}
+              {user && (
+                <img
+                  className="rounded-full"
+                  src={user?.photoURL}
+                  alt="User img"
+                  title={user?.displayName}
                 />
-              }
+              )}
             </div>
             {/* {user && <h3 className="mx-2">{user?.displayName}</h3>} */}
-          {user ? <Link onClick={handleLogOut} className="btn bg-my-primary border-none">Log out</Link>
-          :
-          <Link to="/login" className="btn bg-my-primary border-none">Login</Link>}
+            {user ? (
+              <Link
+                onClick={handleLogOut}
+                className="btn bg-my-primary border-none"
+              >
+                Log out
+              </Link>
+            ) : (
+              <Link to="/login" className="btn bg-my-primary border-none">
+                Login
+              </Link>
+            )}
             {/* <Link to="/login" className="btn bg-my-primary border-none">
               Login
             </Link> */}
