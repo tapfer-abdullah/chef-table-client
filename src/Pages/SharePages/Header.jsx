@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 
+
 const Header = () => {
   const { user, Logout } = useContext(AuthContext);
   // console.log(user)
@@ -16,6 +17,7 @@ const Header = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <div className=" px-2 md:px-32 bg-black text-white text-base">
@@ -78,7 +80,7 @@ const Header = () => {
                   <NavLink
                     to="/"
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? " text-my-primary" : "text-white"
+                      isPending ? "pending" : isActive ? " text-my-primary text-xl font-semibold" : "text-white"
                     }
                   >
                     Home
@@ -88,7 +90,7 @@ const Header = () => {
                   <NavLink
                     to="/blog"
                     className={({ isActive }) =>
-                      isActive ? "text-my-primary" : "text-white"
+                      isActive ? "text-my-primary text-xl font-semibold" : "text-white"
                     }
                   >
                     Blog

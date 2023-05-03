@@ -1,14 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Recipies from "./Recipies";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChefDetails = () => {
+
+  
   const details = useLoaderData();
+
   const { id, name, picture, bio, likes, experience, recipes, recipesList } =
     details;
 
   //   console.log(details);
+  const notify = (recipeName) => toast(`${recipeName}  added to favorite!`, {
+    closeButton: true // enable close button
+  });
   return (
     <div>
       <div className="text-white bg-my-banner-details-0 bg-bg-rectangle  bg-no-repeat bg-cover bg-center h-full">
@@ -77,10 +85,12 @@ const ChefDetails = () => {
             <Recipies
               key={recipies.recipeNumber}
               recipies={recipies}
+              notify = {notify}
             ></Recipies>
           ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
