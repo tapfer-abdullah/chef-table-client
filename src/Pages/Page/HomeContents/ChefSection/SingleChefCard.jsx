@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleChefCard = ({ d }) => {
-  console.log(d);
+  // console.log(d);
   return (
     <div>
       <div className="card w-96 my-4 bg-my-primary border-1 mx-auto">

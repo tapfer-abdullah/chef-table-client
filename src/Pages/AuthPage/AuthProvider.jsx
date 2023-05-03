@@ -12,6 +12,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../../Config/config.firebase";
 
@@ -25,7 +26,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (loadedUser) => {
       setUser(loadedUser);
-      console.log(loadedUser);
+      // console.log(loadedUser);
     });
   }, []);
 
@@ -48,13 +49,25 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   }
 
+  const handleUpdateProfile = (name, photoURL) =>{
+    updateProfile(auth.currentUser, {
+      displayName: `${name}`, photoURL: `${photoURL}`
+    }).then(() => {
+      console.log("profile updated");
+      Logout();
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
   const authInfo = {
     user,
     Login,
     Register,
     Logout,
     LoginWGoogle,
-    LoginWGithub
+    LoginWGithub,
+    handleUpdateProfile
   };
 
   return (

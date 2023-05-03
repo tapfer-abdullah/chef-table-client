@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
+
 
 const Register = () => {
   const [errorM, setErrorM] = useState("");
   const [passError, setPassError] = useState("");
 
-  const { Register, LoginWGoogle, LoginWGithub } = useContext(AuthContext);
+  const { Register, LoginWGoogle, LoginWGithub, handleUpdateProfile } = useContext(AuthContext);
 
   const [isEmail, setEmail] = useState("");
   const handleEmail = (event) => {
@@ -45,11 +46,12 @@ const Register = () => {
       setErrorM("");
       setPassError("");
     }
-
+    
     console.log(name, photoURL, email, password, confirmPassword);
 
     Register(email, password)
       .then((result) => {
+        handleUpdateProfile(name, photoURL);
         console.log("Register Successful", result.user);
         setErrorM("");
       })
@@ -57,7 +59,7 @@ const Register = () => {
         console.log(error);
         setErrorM(error.message);
       });
-
+      
     event.target.reset();
   };
 
@@ -82,6 +84,10 @@ const Register = () => {
       });
   };
 
+  const navigate = useNavigate();
+  const navigateToRegister = () =>{
+    navigate("/login");
+  }
   return (
     <div>
       <div className="md:w-1/3 my-4 md:mb-6 md:mt-24 py-4 px-14 mx-auto text-center rounded-xl border-2 border-black">
@@ -146,12 +152,14 @@ const Register = () => {
           </div>
 
           <input
+          onClick={navigateToRegister}
             className={`btn bg-my-primary border-none w-full mt-3 ${
               (!isEmail || !isPassword || !isConfirmPassword) && "btn-disabled"
             }`}
             type="submit"
             value="Register"
-          ></input>
+          />
+
           {errorM && <p className="my-1 text-danger">{errorM}</p>}
           <p className="my-2">
             Already have an account?

@@ -7,6 +7,7 @@ import { AuthContext } from "../AuthPage/AuthProvider";
 const Header = () => {
 
     const {user, Logout} = useContext(AuthContext);
+    // console.log(user)
     const handleLogOut = () =>{
         Logout()
         .then(() =>{
@@ -16,7 +17,6 @@ const Header = () => {
             console.log(error)
         })
     }
-
   return (
     <div>
       <div className=" px-2 md:px-32 bg-black text-white text-base">
@@ -70,10 +70,17 @@ const Header = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <div className="w-10 rounded-full ml-4">
-              {user && <img className="rounded-full" src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" alt="nav img" />}
+            <div className="w-10 rounded-full mx-4">
+              {
+                user && <img 
+                className="rounded-full" 
+                src={user?.photoURL} 
+                alt="User img" 
+                title={user?.displayName}
+                />
+              }
             </div>
-            {user && <h3 className="mx-2">{user?.email}</h3>}
+            {/* {user && <h3 className="mx-2">{user?.displayName}</h3>} */}
           {user ? <Link onClick={handleLogOut} className="btn bg-my-primary border-none">Log out</Link>
           :
           <Link to="/login" className="btn bg-my-primary border-none">Login</Link>}
