@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
 const Recipies = ({ recipies }) => {
-  console.log(recipies);
+  // console.log(recipies);
   const { cookingMethod, ingredients, rating, recipeImg, recipeName } = recipies;
+
+  const [isDisable, setDisable] = useState(false);
 
   const notify = () => toast(`${recipeName} added to favorite!`);
 
@@ -39,7 +41,9 @@ const Recipies = ({ recipies }) => {
         <Rating style={{ maxWidth: 160 }} readOnly value={rating} />
         <span className="text-2xl ml-2">{rating}</span>
         </p>
-        <button onClick={notify} className="btn btn-outline border-my-primary text-my-primary hover:bg-my-primary ">
+        <button disabled = {isDisable}
+        onClick={() =>{notify(), setDisable(true)}} 
+        className= {`btn btn-outline border-my-primary text-my-primary hover:bg-my-primary`}>
           Add to favorite
         </button>
       </div>
