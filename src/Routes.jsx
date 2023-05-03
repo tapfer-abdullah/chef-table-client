@@ -10,6 +10,7 @@ import Register from "./Pages/Page/Register";
 import HomeContents from "./Pages/Page/HomeContents/HomeContents";
 import ChefDetails from "./Pages/Page/HomeContents/ChefDetails/ChefDetails";
 import ErrorPage from "./Pages/Page/ErrorPage/ErrorPage";
+import BlogPage from "./Pages/Page/BlogPage/BlogPage";
 
   const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ import ErrorPage from "./Pages/Page/ErrorPage/ErrorPage";
           path: "/chef-details/:id",
           element: <ChefDetails></ChefDetails>,
           loader: ({params}) => fetch(`https://chef-recipe-hunter-server-tau.vercel.app/chef-data/${params.id}`)
+        },
+        {
+          path: "/blog",
+          element: <BlogPage></BlogPage>
         }
       ]
     },

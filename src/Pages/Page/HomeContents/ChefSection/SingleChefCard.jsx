@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const SingleChefCard = ({ d }) => {
   // console.log(d);
@@ -9,7 +11,15 @@ const SingleChefCard = ({ d }) => {
     <div>
       <div className="card w-96 my-4 bg-my-primary border-1 mx-auto">
         <figure>
-          <img src={d.picture} alt="car!" />
+          {/* <img src={d.picture} alt="car!" /> */}
+          <LazyLoadImage
+          delayTime="600s"
+                effect="blur"
+                  alt={"hjh"}
+                  // height= "300px"
+                  src={d.picture} // use normal <img> attributes as props
+                  // width= "300px"
+                />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{d.name}</h2>
@@ -37,14 +47,16 @@ const SingleChefCard = ({ d }) => {
                 style={{ bottom: "1px", marginLeft: "2px" }}
                 className="relative"
               >
-                {d.likes}
+                {d.likes} Likes
               </p>
             </p>
           </div>
           <div className="card-actions justify-end ">
-            <button className="btn glass btn-outline text-white hover:btn-accent">
-              <Link to={`/chef-details/${d.id}`}>View Recipes</Link>
-            </button>
+            <Link to={`/chef-details/${d.id}`}>
+              <button className="btn glass btn-outline text-white hover:btn-accent">
+                View Recipes
+              </button>
+            </Link>
           </div>
         </div>
       </div>
