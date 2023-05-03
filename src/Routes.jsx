@@ -30,7 +30,7 @@ import ChefDetails from "./Pages/Page/HomeContents/ChefDetails/ChefDetails";
         {
           path: "/chef-details/:id",
           element: <ChefDetails></ChefDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/chef-data/${params.id}`)
+          loader: ({params}) => fetch(`https://chef-recipe-hunter-server-tau.vercel.app/chef-data/${params.id}`)
         }
       ]
     },

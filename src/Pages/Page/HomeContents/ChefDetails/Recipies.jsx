@@ -2,11 +2,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipies = ({ recipies }) => {
   console.log(recipies);
-  const { cookingMethod, ingredients, rating, recipeImg, recipeName } =
-    recipies;
+  const { cookingMethod, ingredients, rating, recipeImg, recipeName } = recipies;
+
+  const notify = () => toast(`${recipeName} added to favorite!`);
+
   return (
     <div
       className="mb-20 mx-3 p-10 rounded-xl"
@@ -32,10 +36,11 @@ const Recipies = ({ recipies }) => {
         <p className="text-my-primary my-3 flex items-center font-semibold text-lg">
           rating {rating}
         </p>
-        <button className="btn btn-outline border-my-primary text-my-primary hover:bg-my-primary ">
+        <button onClick={notify} className="btn btn-outline border-my-primary text-my-primary hover:bg-my-primary ">
           Add to favorite
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
