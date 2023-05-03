@@ -4,6 +4,8 @@
 import React from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const Recipies = ({ recipies }) => {
   console.log(recipies);
@@ -34,7 +36,8 @@ const Recipies = ({ recipies }) => {
       </p>
       <div className="flex items-center justify-between mt-4">
         <p className="text-my-primary my-3 flex items-center font-semibold text-lg">
-          rating {rating}
+        <Rating style={{ maxWidth: 160 }} readOnly value={rating} />
+        <span className="text-2xl ml-2">{rating}</span>
         </p>
         <button onClick={notify} className="btn btn-outline border-my-primary text-my-primary hover:bg-my-primary ">
           Add to favorite
