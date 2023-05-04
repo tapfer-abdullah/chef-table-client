@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 
 const Register = () => {
@@ -96,7 +97,7 @@ const Register = () => {
 
   return (
     <div>
-      <div className="md:w-1/3 my-4 md:mb-6 md:mt-24 py-4 px-14 mx-auto text-center rounded-xl border-2 border-black">
+      <div className="md:w-1/3 my-4 md:mb-6 md:mt-24 py-4 px-14 mx-3 md:mx-auto text-center rounded-xl border-2 border-black">
         <h3 className="text-2xl font-semibold mb-5">Please Register</h3>
         <form onSubmit={handleRegister} className="text-left">
           <div>
@@ -182,13 +183,19 @@ const Register = () => {
               onClick={handleWithGoogle}
               className="btn bg-my-primary border-none w-full md:w-2/5  mx-3 my-5"
             >
-              <Link>Google</Link>
+              <Link className="flex items-center"> 
+              <FaGoogle className="mr-2 text-3xl" />
+              <p>Google</p>
+              </Link>
             </button>
             <button
               onClick={handleWithGithub}
               className="btn bg-my-primary border-none w-full md:w-2/5 mx-3 my-5"
             >
-              <Link>GitHub</Link>
+              <Link className="flex items-center"> 
+              <FaGithub className="mr-2 text-3xl" />
+              <p>GitHub</p>
+              </Link>
             </button>
           </div>
         </div>
