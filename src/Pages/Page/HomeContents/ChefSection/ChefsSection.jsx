@@ -15,7 +15,7 @@ const ChefsSection = () => {
     fetch("https://chef-recipe-hunter-server-tau.vercel.app/chef-data")
       .then((res) => res.json())
       .then((data) => setChefData(data));
-        console.log(chefData);
+        // console.log(chefData);
         setLoading(false);
   }, []);
 

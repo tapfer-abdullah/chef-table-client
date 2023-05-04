@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 
 
@@ -8,7 +8,7 @@ const Register = () => {
   const [errorM, setErrorM] = useState("");
   const [passError, setPassError] = useState("");
 
-  const { Register, LoginWGoogle, LoginWGithub, handleUpdateProfile } = useContext(AuthContext);
+  const { loader, Register, LoginWGoogle, LoginWGithub, handleUpdateProfile } = useContext(AuthContext);
 
   const [isEmail, setEmail] = useState("");
   const handleEmail = (event) => {
@@ -22,6 +22,13 @@ const Register = () => {
   const handleConfirmPassword = (event) => {
     setConfirmPassword(event.target.value);
   };
+
+  const navigate = useNavigate();
+
+  // const from = useLocation();
+  // console.log(from)
+  // console.log(createPath)
+
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -54,6 +61,7 @@ const Register = () => {
         handleUpdateProfile(name, photoURL);
         console.log("Register Successful", result.user);
         setErrorM("");
+        navigate("/login")
       })
       .catch((error) => {
         console.log(error);
@@ -72,6 +80,7 @@ const Register = () => {
         console.log(error);
         setErrorM(error.message);
       });
+
   };
   const handleWithGithub = () => {
     LoginWGithub()
@@ -84,10 +93,7 @@ const Register = () => {
       });
   };
 
-  const navigate = useNavigate();
-  const navigateToRegister = () =>{
-    navigate("/login");
-  }
+
   return (
     <div>
       <div className="md:w-1/3 my-4 md:mb-6 md:mt-24 py-4 px-14 mx-auto text-center rounded-xl border-2 border-black">
@@ -152,7 +158,6 @@ const Register = () => {
           </div>
 
           <input
-          onClick={navigateToRegister}
             className={`btn bg-my-primary border-none w-full mt-3 ${
               (!isEmail || !isPassword || !isConfirmPassword) && "btn-disabled"
             }`}

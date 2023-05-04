@@ -12,7 +12,7 @@ const Footer = () => {
           <span className="footer-title">Contact Us</span>
           <a className=""> <div className="flex items-center gap-2"> <FaPhoneAlt className=" text-my-primary"/>+1800-001-658</div></a>
           <a className=""> <div className="flex items-center gap-2"> <HiMail className="text-lg text-my-primary"/>thechefstable@gmail.com</div></a>
-          <a className=""> <div className="flex items-center gap-2"> <HiLocationMarker className="text-lg text-my-primary"/>Themeforest, Envato HQ 24 Fifth st., Los Angeles, USA</div></a>
+          <a className=""> <div className="flex items-center gap-2"> <HiLocationMarker className="text-lg text-my-primary"/>Envato HQ 24 Fifth st., Los Angeles, USA</div></a>
           <a className=""> <div className="flex items-center gap-2"> <HiMail className="text-lg text-my-primary"/>Welcome to The Chef's Table restaurant</div></a>
         </div>
         <div className="md:ml-40">

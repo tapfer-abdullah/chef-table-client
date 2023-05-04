@@ -1,13 +1,24 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
+import { FadeLoader } from "react-spinners";
 
 const Login = () => {
-  const { Login, LoginWGoogle,LoginWGithub } = useContext(AuthContext);
+  const { Login, LoginWGoogle,LoginWGithub, loader } = useContext(AuthContext);
   const [errorM, setErrorM] = useState("");
+  const [isEmail, setEmail] = useState('');
+  const [isPassword, setPassword] = useState('');
 
+  const location = useLocation();
+  
+
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  // console.log(from);
+
+  
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,27 +26,30 @@ const Login = () => {
     const password = form.password.value;
 
 
-    console.log(email, password);
+    // console.log(email, password);
 
     Login(email, password)
       .then((result) => {
         console.log(result.user);
         setErrorM("");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setErrorM(error.message);
       });
 
       event.target.reset();
+      
+      
   };
 
-  const [isPassword, setPassword] = useState('');
+  
 
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
 
-  const [isEmail, setEmail] = useState('');
+  
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
@@ -50,6 +64,7 @@ const Login = () => {
         console.log(error);
         setErrorM(error.message);
       });
+      navigate(from, { replace: true });
   };
   const handleWithGithub = () => {
     LoginWGithub()
@@ -60,9 +75,12 @@ const Login = () => {
         console.log(error);
         setErrorM(error.message);
       });
+
+      navigate(from, { replace: true });
   };
 
-  
+
+ 
 
   return (
     <div className="w-1/3 my-4 md:mb-6 md:mt-24 py-9 px-14 mx-auto text-center rounded-xl border-2 border-black">
@@ -103,9 +121,7 @@ const Login = () => {
           type="submit"
           value="Log in"
         />
-        {/* <button className='w-full'>
-                      <Link className="btn bg-my-primary border-none w-full">Log in</Link>
-                  </button> */}
+
         {errorM && <p className="my-1 text-danger">{errorM}</p>}
         <p className="my-4">
           Don't have an account?
