@@ -4,8 +4,10 @@ import { useLoaderData } from "react-router-dom";
 import Recipies from "./Recipies";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useTitle from "../../../../useTitle";
 
 const ChefDetails = () => {
+  useTitle("Recipes");
   const details = useLoaderData();
 
   const { id, name, picture, bio, likes, experience, recipes, recipesList } =

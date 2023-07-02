@@ -32,7 +32,7 @@ const ChefsSection = () => {
         </div>
 
         {!loading ? (
-        <div className="px-4 md:px-32 mx-auto grid grid-cols-1 md:grid-cols-3">
+        <div className="px-4 md:px-32 mx-auto grid grid-cols-1 md:grid-cols-3 gap-3">
             {chefData.map((d) => (
               <SingleChefCard key={d.id} d={d}></SingleChefCard>
             ))}

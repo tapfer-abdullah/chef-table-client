@@ -8,18 +8,18 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 const SingleChefCard = ({ d }) => {
   // console.log(d);
   return (
-    <div>
-      <div className="card w-96 my-4 bg-my-primary border-1 mx-auto">
+    <div className="">
+      <div className="card w-[350px] my-4 bg-my-primary border-1 mx-auto">
         <figure>
           {/* <img src={d.picture} alt="car!" /> */}
           <LazyLoadImage
-          delayTime="600s"
-                effect="blur"
-                  alt={"hjh"}
-                  // height= "300px"
-                  src={d.picture} // use normal <img> attributes as props
-                  // width= "300px"
-                />
+            delayTime="600s"
+            effect="blur"
+            alt={"hjh"}
+            // height= "300px"
+            src={d.picture} // use normal <img> attributes as props
+            // width= "300px"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{d.name}</h2>

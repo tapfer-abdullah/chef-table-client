@@ -3,9 +3,12 @@ import React, { useContext, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import useTitle from "../../useTitle";
 
 
 const Register = () => {
+  useTitle("Register");
+
   const [errorM, setErrorM] = useState("");
   const [passError, setPassError] = useState("");
 

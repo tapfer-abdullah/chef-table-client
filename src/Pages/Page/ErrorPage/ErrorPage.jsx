@@ -3,10 +3,13 @@ import React from "react";
 import { Link, useRouteError } from "react-router-dom";
 import Header from "../../SharePages/Header";
 import Footer from "../../SharePages/Footer";
+import useTitle from "../../../useTitle";
 
 const ErrorPage = () => {
   const error = useRouteError();
-  console.error(error);
+  // console.error(error);
+
+  useTitle("Error-Page");
 
   return (
     <div>

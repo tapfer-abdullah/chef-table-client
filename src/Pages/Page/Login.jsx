@@ -5,8 +5,11 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthPage/AuthProvider";
 import { FadeLoader } from "react-spinners";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import useTitle from "../../useTitle";
 
 const Login = () => {
+  useTitle("Login");
+
   const { Login, LoginWGoogle,LoginWGithub, loader } = useContext(AuthContext);
   const [errorM, setErrorM] = useState("");
   const [isEmail, setEmail] = useState('');

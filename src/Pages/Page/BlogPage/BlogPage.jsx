@@ -2,10 +2,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Blog from "./Blog";
+import useTitle from "../../../useTitle";
 
 
 const BlogPage = () => {
-
+useTitle("Blog");
 
   return (
     <div
